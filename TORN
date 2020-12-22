@@ -1,0 +1,18 @@
+import requests as req
+import re
+from bs4 import BeautifulSoup
+
+x = "https://www.moneycontrol.com/india/stockpricequote/chemicals/mysorepetrochemicals/MPC01"
+
+htmlf = req.get(x).text
+
+getpri = BeautifulSoup(htmlf.encode("utf-8"), "lxml")
+
+nsed = getpri.findAll(
+    "div", attrs={"id": "div_nse_livebox_wrap", "class": "not_tradedbx "})
+bsed = getpri.findAll(
+    "div", attrs={"id": "div_bse_livebox_wrap", "class": "not_tradedbx "})
+
+print(nsed)
+print("\n\n\n")
+print(bsed)
